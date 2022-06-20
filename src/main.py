@@ -1,9 +1,18 @@
+import os
 from banco import Banco
 from cliente import Cliente
 from conta import Conta
+from saves import *
 
 banco = Banco()
-cont = 1000
+
+if os.path.exists('./data.dat'):
+    if read():
+        print("Dados carregados com sucesso!\n")
+    else:
+        print("Houve um erro ao carregar os dados.\n")
+
+cont = 999
 
 while True:
     print("MENU:\n1 – Cadastrar cliente/conta\n2 – Consultar\n3 – Depositar\n4 - Sacar\n5 – Transferir\n6 - Finalizar")
@@ -28,6 +37,7 @@ while True:
                 print("Valor inválido, use ponto em vez de vírgula\n")
         banco.cadastrar(Cliente(nome, cpf, endereco, telefone, Conta(cont+1, tipo, saldo)))
         cont = cont + 1
+        save(banco.consultar(nome))
         print("Cliente cadastrado com sucesso")
 
     elif opc == 2:
