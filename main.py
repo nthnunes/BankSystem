@@ -3,7 +3,6 @@ from cliente import Cliente
 from conta import Conta
 
 banco = Banco()
-
 cont = 1000
 
 while True:
