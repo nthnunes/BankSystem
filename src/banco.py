@@ -15,6 +15,7 @@ class Banco():
         for i in range(len(self.clientes)):
             if self.clientes[i].getNome() == nome:
                 self.clientes[i].getConta().depositar(valor)
+                print("Depósito efetuado com sucesso!")
                 return True
         return False
 
