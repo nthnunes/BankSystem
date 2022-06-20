@@ -4,7 +4,7 @@ class Conta():
         self.tipo = tipo
         self.saldo = saldo
 
-    def depositar(self, valor) -> float:
+    def depositar(self, valor) -> None:
         self.saldo = self.saldo + valor
 
     def sacar(self, valor) -> bool:
