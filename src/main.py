@@ -1,4 +1,3 @@
-import os
 from banco import Banco
 from cliente import Cliente
 from conta import Conta
@@ -6,13 +5,11 @@ from saves import *
 
 banco = Banco()
 
-if os.path.exists('./data.dat'):
-    if read():
-        print("Dados carregados com sucesso!\n")
-    else:
-        print("Houve um erro ao carregar os dados.\n")
-
-cont = 999
+numero = check(banco)
+if numero != None:
+    cont = numero
+else:
+    cont = 999
 
 while True:
     print("MENU:\n1 – Cadastrar cliente/conta\n2 – Consultar\n3 – Depositar\n4 - Sacar\n5 – Transferir\n6 - Finalizar")
