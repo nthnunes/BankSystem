@@ -1,3 +1,4 @@
+import os
 from banco import Banco
 from cliente import Cliente
 from conta import Conta
@@ -34,7 +35,6 @@ while True:
                 print("Valor inválido, use ponto em vez de vírgula\n")
         banco.cadastrar(Cliente(nome, cpf, endereco, telefone, Conta(cont+1, tipo, saldo)))
         cont = cont + 1
-        save(banco.consultar(nome))
         print("Cliente cadastrado com sucesso")
 
     elif opc == 2:
@@ -82,6 +82,11 @@ while True:
             print("Cliente não encontrado")
             
     elif opc == 6:
+        clientes = banco.getClientes()
+        if os.path.exists('./data.dat'):
+            os.remove("data.dat")
+        for i in range(len(clientes)):
+            save(clientes[i])
         exit()
     
     print("")
