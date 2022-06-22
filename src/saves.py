@@ -5,13 +5,13 @@ from conta import Conta
 def save(cliente) -> bool:
     try:
         data = open("data.dat", "a")
-        data.write(str(cliente.getNome()))
+        data.write(cliente.getNome())
         data.write("\n")
-        data.write(str(cliente.getCpf()))
+        data.write(cliente.getCpf())
         data.write("\n")
-        data.write(str(cliente.getEndereco()))
+        data.write(cliente.getEndereco())
         data.write("\n")
-        data.write(str(cliente.getTelefone()))
+        data.write(cliente.getTelefone())
         data.write("\n")
         data.write(str(cliente.getConta().getNumero()))
         data.write("\n")
