@@ -1,7 +1,6 @@
 import os
 from cliente import Cliente
 from conta import Conta
-from cryptography.fernet import Fernet
 
 def save(cliente) -> bool:
     try:
@@ -62,18 +61,3 @@ def check(banco) -> int:
             return None
     else:
         return None
-
-def encrypt() -> None:
-    key = Fernet.generate_key()
-    fernet = Fernet(key)
-    
-    data = open("data.dat", "w")
-    lines = data.readlines()
-    data.close()
-    
-    os.remove('./data.dat')
-    for i in range(len(lines)):
-        encMessage = fernet.encrypt(lines[i].encode())
-        data = open("data.dat", "r")
-
-    data.close()
