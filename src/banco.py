@@ -32,3 +32,6 @@ class Banco():
                     if self.clientes[j].getNome() == nome2:
                         return self.clientes[i].getConta().transferir(valor, self.clientes[j].getConta())
         return False
+
+    def getClientes(self) -> list:
+        return self.clientes
