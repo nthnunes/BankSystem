@@ -5,6 +5,7 @@ from conta import Conta
 from saves import *
 
 banco = Banco()
+password = readPassword()
 
 numero = check(banco)
 if numero != None:
@@ -84,9 +85,54 @@ while True:
     elif opc == 6:
         clientes = banco.getClientes()
         if os.path.exists('./data.dat'):
-            os.remove("data.dat")
+            try:
+                os.remove("data.dat")
+            except Exception as e:
+                print(e)
         for i in range(len(clientes)):
-            save(clientes[i])
+            if clientes[i] != None:
+                save(clientes[i])
         exit()
+
+    elif opc == 777:
+        if password == None:
+            password = input("Nova senha: ")
+            temp = input("Confirme a senha: ")
+            if password != temp:
+                print("As senhas não conferem.")
+                password = None
+            else:
+                savePassword(password)
+                print("Senha criada com sucesso!")
+        else:
+            temp = input("Senha: ")
+            if password == temp:
+                while True:
+                    print("\nADMIN MODE:\n1 – Alterar dados\n2 – Apagar usuário\n3 – Deletar todos os dados\n4 - Exibir log\n5 - Sair")
+                    opc = int(input("Digite a opção que deseja: "))
+
+                    if opc == 1:
+                        pass
+
+                    elif opc == 2:
+                        nome = input("Nome do cliente a ser deletado: ")
+                        if banco.deletar(nome):
+                            print("O cliente foi deletado com sucesso!")
+                        else:
+                            print("Cliente não encontrado.")
+
+                    elif opc == 3:
+                        temp = input("Tem certeza que deseja deletar todos os dados: [yes/cancel]\n")
+                        if temp.lower() == "yes":
+                            os.remove("data.dat")
+                            banco = Banco()
+
+                    elif opc == 4:
+                        viewLog()
+
+                    elif opc == 5:
+                        break
+            else:
+                print("Senha incorreta.")
     
     print("")
