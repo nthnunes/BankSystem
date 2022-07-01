@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from cliente import Cliente
 from conta import Conta
 
@@ -22,7 +23,7 @@ def save(cliente) -> bool:
         data.close()
         return True
     except Exception as e:
-        print(e)
+        log(e)
         return False
 
 def read(banco) -> int:
@@ -52,12 +53,45 @@ def read(banco) -> int:
 
 def check(banco) -> int:
     if os.path.exists('./data.dat'):
-        numero = read(banco)
-        if numero != None:
-            print("Dados carregados com sucesso!\n")
-            return numero       
-        else:
-            print("Houve um erro ao carregar os dados.\n")
-            return None
+        if len(open("data.dat", "r").readlines()) > 2:
+            numero = read(banco)
+            if numero != None:
+                print("Dados carregados com sucesso!\n")
+                return numero       
+            else:
+                print("Houve um erro ao carregar os dados.\n")
+                return None
+    return None
+
+def savePassword(password) -> None:
+    data = open("utils.dat", "a")
+    data.write(password)
+    data.close()
+
+def readPassword() -> str:
+    if os.path.exists('./utils.dat'):
+        data = open("utils.dat", "r")
+        password = data.readline()
+        data.close()
+        return password
+    return None
+
+def log(error) -> None:
+    data = open("log.txt", "a")
+    time = datetime.now()
+    data.write(str(time))
+    data.write(" -> ")
+    data.write(str(error))
+    data.write("\n")
+    data.close()
+
+def viewLog() -> None:
+    print("\nLogs:")
+    if os.path.exists('./log.txt'):
+        data = open("log.txt", "r")
+        log = data.readlines()
+        for i in range(len(log)):
+            print(log[i].strip('\n'))
+        data.close()
     else:
-        return None
+        print("Empty Log")
