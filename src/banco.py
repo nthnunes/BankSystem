@@ -5,6 +5,13 @@ class Banco():
     def cadastrar(self, c) -> None:
         self.clientes.append(c)
 
+    def deletar(self, nome) -> bool:
+        for i in range(len(self.clientes)):
+            if self.clientes[i].getNome() == nome:
+                self.clientes[i] = None
+                return True
+        return False
+
     def consultar(self, nome) -> object:
         for i in range(len(self.clientes)):
             if self.clientes[i].getNome() == nome:
