@@ -46,7 +46,7 @@ while True:
         nome = input("Digite o Nome que deseja consultar: ")
         if banco.consultar(nome) != None:
             cliente = banco.consultar(nome)
-            print("\nNome: ",cliente.getNome())
+            print("\nNome:",cliente.getNome())
             print("CPF:",cliente.getCpf())
             print("Endereço:",cliente.getEndereco())
             print("Telefone:",cliente.getTelefone())
