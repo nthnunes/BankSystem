@@ -136,7 +136,8 @@ while True:
                     elif opc == 3:
                         temp = input("Tem certeza que deseja deletar todos os dados: [yes/cancel]\n")
                         if temp.lower() == "yes":
-                            os.remove("data.dat")
+                            if os.path.exists('./data.dat'):
+                                os.remove("data.dat")
                             banco = Banco()
 
                     elif opc == 4:
@@ -144,7 +145,11 @@ while True:
 
                     elif opc == 5:
                         break
+                    else:
+                        print("Valor inválido.")
             else:
                 print("Senha incorreta.")
+    else:
+        print("Valor inválido.") 
     
     print("")
