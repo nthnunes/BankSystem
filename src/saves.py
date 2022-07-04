@@ -79,7 +79,7 @@ def readPassword() -> str:
     return None
 
 def log(error) -> None:
-    data = open("log.txt", "a")
+    data = open("logger.log", "a")
     time = datetime.now()
     data.write(str(time))
     data.write(" -> ")
@@ -89,8 +89,8 @@ def log(error) -> None:
 
 def viewLog() -> None:
     print("\nLogs:")
-    if os.path.exists('./log.txt'):
-        data = open("log.txt", "r")
+    if os.path.exists('./logger.log'):
+        data = open("logger.log", "r")
         log = data.readlines()
         for i in range(len(log)):
             print(log[i].strip('\n'))
