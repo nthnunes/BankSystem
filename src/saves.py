@@ -23,6 +23,7 @@ def save(cliente) -> bool:
         data.close()
         return True
     except Exception as e:
+        print(e)
         log(e)
         return False
 
@@ -49,6 +50,7 @@ def read(banco) -> int:
         return numero
     except Exception as e:
         print(e)
+        log(e)
         return None
 
 def check(banco) -> int:

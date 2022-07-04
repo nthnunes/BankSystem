@@ -21,6 +21,8 @@ while True:
             break
         except ValueError:
             print("Entrada inválida, tente novamente\n")
+        except Exception as e:
+            log(e)
 
     if opc == 1:
         nome = input("Digite o Nome: ")
@@ -34,6 +36,8 @@ while True:
                 break
             except ValueError:
                 print("Valor inválido, use ponto em vez de vírgula\n")
+            except Exception as e:
+                log(e)
         banco.cadastrar(Cliente(nome, cpf, endereco, telefone, Conta(cont+1, tipo, saldo)))
         cont = cont + 1
         print("Cliente cadastrado com sucesso")
@@ -89,6 +93,7 @@ while True:
                 os.remove("data.dat")
             except Exception as e:
                 print(e)
+                log(e)
         for i in range(len(clientes)):
             if clientes[i] != None:
                 save(clientes[i])
@@ -109,7 +114,14 @@ while True:
             if password == temp:
                 while True:
                     print("\nADMIN MODE:\n1 – Alterar dados\n2 – Apagar usuário\n3 – Deletar todos os dados\n4 - Exibir log\n5 - Sair")
-                    opc = int(input("Digite a opção que deseja: "))
+                    while True:
+                        try:
+                            opc = int(input("Digite a opção que deseja: "))
+                            break
+                        except ValueError:
+                            print("Entrada inválida, tente novamente\n")
+                        except Exception as e:
+                            log(e)
 
                     if opc == 1:
                         pass
